@@ -1,4 +1,4 @@
-# Self-Organizing Maps (SOM): Una Guía Completa
+# Self-Organizing Maps (SOM): 
 
 ## Introducción Teórica
 
@@ -415,5 +415,6 @@ La aplicación presentada en segmentación de clientes puede extenderse a:
 - Diagnóstico médico basado en múltiples variables
 
 Los SOM continúan evolucionando con variaciones como Growing SOM, Time-Aware SOM y Deep SOM, expandiendo su aplicabilidad en la era del big data y el aprendizaje profundo.
+
 
 Esta implementación proporciona una base sólida para explorar el poder de los Mapas Auto-Organizativos en problemas del mundo real, combinando principios teóricos sólidos con aplicaciones prácticas significativas.
