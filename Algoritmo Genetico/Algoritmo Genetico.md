@@ -779,6 +779,25 @@ Número total de partidos en el cronograma: 96
 VALIDACIÓN DE RESTRICCIONES:
 # Todos los equipos tienen 3 partidos como local: True
 # Todos los equipos tienen 3 partidos como visitante: True
+
+============================================================
+ESTADÍSTICAS DETALLADAS DEL CRONOGRAMA OPTIMIZADO
+============================================================
+Distancia total de viaje: 39,519.75 millas
+Distancia promedio por partido: 411.66 millas
+Distancia máxima en un partido: 1669.98 millas
+Distancia mínima en un partido: 18.51 millas
+Desviación estándar de distancias: 312.53 millas
+
+EQUIPOS CON MAYOR Y MENOR CARGA DE VIAJE:
+ Mayor distancia: Dallas Cowboys (2,833.72 millas)
+ Menor distancia: New York Giants (455.31 millas)
+
+ Mejor cronograma guardado en 'mejor_cronograma_nfl.csv'
+
+============================================================
+OPTIMIZACIÓN COMPLETADA EXITOSAMENTE
+============================================================
 ```
 
 ### Interpretación de los Resultados:
@@ -811,4 +830,5 @@ La solución final no solo optimiza la métrica objetivo (distancia), sino que t
 - Implementación de operadores de cruce especializados para problemas de scheduling
 - Análisis de sensibilidad de parámetros para optimizar performance
 - Desarrollo de enfoques híbridos combinando algoritmos genéticos con búsqueda local
+
 - Extensión a optimización multi-objetivo considerando criterios adicionales
