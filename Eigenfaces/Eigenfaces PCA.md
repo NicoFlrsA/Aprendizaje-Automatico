@@ -14,74 +14,74 @@ El método de Eigenfaces, desarrollado por Turk y Pentland en 1991, es una técn
 
 ### 1. Preprocesamiento y Cálculo de la Media
 
-Sea \( \Gamma_1, \Gamma_2, ..., \Gamma_M \) un conjunto de M imágenes de entrenamiento, cada una representada como un vector de dimensión \( N^2 \):
+Sea $$ \Gamma_1, \Gamma_2, \ldots, \Gamma_M $$ un conjunto de M imágenes de entrenamiento, cada una representada como un vector de dimensión $$ N^2 $$:
 
 **Cara media:**
-\[
+$$
 \Psi = \frac{1}{M} \sum_{i=1}^{M} \Gamma_i
-\]
+$$
 
 **Vectores de diferencia (rostros centrados):**
-\[
-\Phi_i = \Gamma_i - \Psi \quad \text{para } i = 1, 2, ..., M
-\]
+$$
+\Phi_i = \Gamma_i - \Psi \quad \text{para } i = 1, 2, \ldots, M
+$$
 
 ### 2. Matriz de Covarianza y Diagonalización
 
 **Matriz de covarianza:**
-\[
+$$
 C = \frac{1}{M} \sum_{i=1}^{M} \Phi_i \Phi_i^T = AA^T
-\]
-donde \( A = [\Phi_1, \Phi_2, ..., \Phi_M] \) es una matriz \( N^2 \times M \)
+$$
+donde $$ A = [\Phi_1, \Phi_2, \ldots, \Phi_M] $$ es una matriz $$ N^2 \times M $$
 
 **Problema de eigenvalores:**
-\[
+$$
 C u_k = \lambda_k u_k
-\]
-donde \( u_k \) son los eigenvectores (eigenfaces) y \( \lambda_k \) los eigenvalores correspondientes
+$$
+donde $$ u_k $$ son los eigenvectores (eigenfaces) y $$ \lambda_k $$ los eigenvalores correspondientes
 
 ### 3. Solución Computacionalmente Eficiente
 
-Dado que \( C \) es muy grande (\( N^2 \times N^2 \)), se utiliza el truco de Turk y Pentland:
+Dado que $$ C $$ es muy grande ($$ N^2 \times N^2 $$), se utiliza el truco de Turk y Pentland:
 
-Sea \( L = A^T A \) (matriz \( M \times M \)), resolvemos:
-\[
+Sea $$ L = A^T A $$ (matriz $$ M \times M $$), resolvemos:
+$$
 L v_i = \mu_i v_i
-\]
+$$
 
-Los eigenvectores de \( C \) se obtienen como:
-\[
+Los eigenvectores de $$ C $$ se obtienen como:
+$$
 u_i = A v_i
-\]
+$$
 
 ### 4. Proyección y Reconstrucción
 
-**Proyección en el espacio de características:**
-Para una nueva imagen \( \Gamma \):
-\[
+**Proyección en el espacio de características:** Para una nueva imagen $$ \Gamma $$:
+$$
 \omega_k = u_k^T (\Gamma - \Psi)
-\]
-Vector de características:
-\[
-\Omega = [\omega_1, \omega_2, ..., \omega_K]^T
-\]
+$$
+
+**Vector de características:**
+$$
+\Omega = [\omega_1, \omega_2, \ldots, \omega_K]^T
+$$
 
 **Reconstrucción de la imagen:**
-\[
-\Gamma_{reconstruida} = \Psi + \sum_{k=1}^{K} \omega_k u_k
-\]
+$$
+\Gamma_{\text{reconstruida}} = \Psi + \sum_{k=1}^{K} \omega_k u_k
+$$
 
 ### 5. Medidas de Distancia para Reconocimiento
 
 **Distancia euclidiana en el espacio de características:**
-\[
+$$
 \epsilon_k = \|\Omega - \Omega_k\|^2
-\]
+$$
 
 **Umbral de reconocimiento:**
-\[
+$$
 \theta = \max \|\Omega - \Omega_k\| \quad \text{para todas las imágenes de entrenamiento}
-\]
+$$
 
 ## Implementación en Python
 
@@ -626,5 +626,6 @@ El uso de 11 componentes para 12 imágenes sigue la práctica estándar en PCA f
 ## Efectividad Global del Sistema
 
 El sistema alcanzó una **precisión del 75%** en las pruebas (3 de 4 correctas), pero más importante aún, demostró **100% de efectividad en la tarea de verificación**: todas las personas conocidas fueron correctamente identificadas y la persona desconocida fue correctamente rechazada. Esto es crucial para aplicaciones de seguridad donde el rechazo correcto de intrusos es tan importante como el reconocimiento de usuarios autorizados.
+
 
 
