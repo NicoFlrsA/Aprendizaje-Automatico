@@ -83,7 +83,6 @@ Vector de características:
 \theta = \max \|\Omega - \Omega_k\| \quad \text{para todas las imágenes de entrenamiento}
 \]
 
-
 ## Implementación en Python
 
 ```python
@@ -627,4 +626,5 @@ El uso de 11 componentes para 12 imágenes sigue la práctica estándar en PCA f
 ## Efectividad Global del Sistema
 
 El sistema alcanzó una **precisión del 75%** en las pruebas (3 de 4 correctas), pero más importante aún, demostró **100% de efectividad en la tarea de verificación**: todas las personas conocidas fueron correctamente identificadas y la persona desconocida fue correctamente rechazada. Esto es crucial para aplicaciones de seguridad donde el rechazo correcto de intrusos es tan importante como el reconocimiento de usuarios autorizados.
+
 
