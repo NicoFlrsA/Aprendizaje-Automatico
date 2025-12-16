@@ -22,39 +22,25 @@ En esta implementación: **ε = 0.1** (10% exploración, 90% explotación)
 ### 2.1 Función de valor Q
 La Q-table almacena el valor esperado de tomar una acción \(a\) en estado \(s\):
 
-\[
-Q(s, a) = \mathbb{E}[R_t + \gamma R_{t+1} + \gamma^2 R_{t+2} + \cdots | S_t = s, A_t = a]
-\]
-
-### 2.2 Actualización SARSA
-\[
-Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha [R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)]
-\]
+Q(s, a) = Valor esperado de [R_t + γR_{t+1} + γ²R_{t+2} + ... | S_t = s, A_t = a]
 
 Donde:
-- \( \alpha \) = Tasa de aprendizaje (0.1)
-- \( \gamma \) = Factor de descuento (0.9)
-- \( R_{t+1} \) = Recompensa obtenida
-- \( S_{t+1} \) = Nuevo estado
-- \( A_{t+1} \) = Próxima acción según política ε-greedy
+- R_t, R_{t+1}, ... son las recompensas en los tiempos t, t+1, etc.
+- γ (gamma) es el factor de descuento
+- S_t es el estado en tiempo t
+- A_t es la acción en tiempo t
 
-### 2.3 Función de recompensa
-\[
-\text{Recompensa} = -(\text{Costo Almacenamiento} + \text{Costo Falta Stock} + \text{Costo Pedido})
-\]
+### 2.2 Actualización SARSA
+La regla de actualización es:
 
-\[
-\text{Costo Almacenamiento} = \text{Inventario Final} \times 1
-\]
-\[
-\text{Costo Falta Stock} = (\text{Demanda} - \text{Ventas}) \times 3
-\]
-\[
-\text{Costo Pedido} = \begin{cases} 
-2 + \text{Pedido} \times 1 & \text{si pedido} > 0 \\
-0 & \text{si pedido} = 0 
-\end{cases}
-\]
+Q(S_t, A_t) ← Q(S_t, A_t) + α * [R_{t+1} + γ * Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)]
+
+Parámetros:
+- α (alpha) = Tasa de aprendizaje = 0.1
+- γ (gamma) = Factor de descuento = 0.9
+- R_{t+1} = Recompensa obtenida después de tomar la acción
+- S_{t+1} = Nuevo estado después de tomar la acción
+- A_{t+1} = Próxima acción según política ε-greedy
 
 ## 3. Explicación del Problema: Control de Inventarios en el Buen Fin
 
@@ -384,4 +370,22 @@ probar_politica(MAX_INVENTARIO, 10)
 ```
 
 ## 5. Análisis de Resultados y Conclusiones
+
+La implementación del algoritmo SARSA para el control de inventarios durante el **Buen Fin** ha demostrado ser un enfoque exitoso y sofisticado. A través del aprendizaje por refuerzo, el modelo descubrió automáticamente una **política óptima no trivial** que equilibra de manera inteligente los costos conflictivos del sistema.
+
+### Logros Principales
+
+El algoritmo aprendió una política donde:
+- **Para inventarios bajos (0-5 unidades)**: Se realizan pedidos proporcionalmente mayores (2-8 unidades), siendo más agresivo cuando el stock es más crítico.
+- **Para inventarios altos (≥6 unidades)**: Se evitan nuevos pedidos, previniendo costos innecesarios de almacenamiento.
+
+Este comportamiento refleja un entendimiento implícito de que **mantener aproximadamente 5-6 unidades como inventario base** minimiza los costos totales, tal como confirmaron las simulaciones (costo óptimo de 3.60 con inventario inicial de 5).
+
+### Valor Práctico y Limitaciones
+
+Para un minorista durante el Buen Fin, esta implementación proporciona **estrategias accionables**: mantener un stock de seguridad, reponer agresivamente al inicio, y establecer umbrales claros de decisión. Sin embargo, se identificaron limitaciones como el manejo de **demandas extremas** (más allá de las 4 unidades modeladas) y el supuesto de **lead time cero**, que en escenarios reales podría requerir ajustes.
+
+### Conclusión Final
+
+SARSA demostró ser **superior a enfoques estáticos tradicionales**, ofreciendo una solución adaptativa que optimiza decisiones secuenciales en entornos de alta incertidumbre. Este proyecto valida el **potencial del aprendizaje por refuerzo** en problemas logísticos del mundo real, particularmente en contextos estacionales como el Buen Fin, donde la demanda volátil y los costos conflictivos exigen políticas dinámicas y basadas en datos.
 
